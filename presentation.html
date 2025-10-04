@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knight's Journey Presentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/black.min.css">
+    <style>
+        .reveal .slides section {
+            text-align: left;
+        }
+        .reveal h1, .reveal h2 {
+            text-align: center;
+        }
+        .reveal .slide-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        .reveal ul {
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .reveal iframe {
+            width: 90vw;
+            height: 75vh;
+            border: 2px solid #555;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <div class="slide-content">
+                    <h1>KNIGHT IN CHESS</h1>
+                    <p style="text-align: center; margin-top: 2rem;">محمد عبدالرؤف عبدالله العمري</p>
+                </div>
+            </section>
+            <section>
+                <div class="slide-content">
+                    <h2>WHAT IS THE PROBLEM</h2>
+                    <p style="max-width: 800px; text-align: center; margin-top: 1rem;">The knight's "L-shaped" move is intuitive for humans but ambiguous for a computer. Our goal is to translate this physical rule into a formal, discrete structure that allows for powerful algorithmic analysis.</p>
+                </div>
+            </section>
+            <section>
+                <div class="slide-content">
+                    <h2>KNIGHT MOVEMENT</h2>
+                     <p style="max-width: 800px; text-align: center; margin-top: 1rem;">A knight's move can be defined mathematically as a change of $(\Delta r, \Delta c)$ where $\{|\Delta r|, |\Delta c|\} = \{1, 2\}$. This gives us 8 possible move vectors from any given square.</p>
+                </div>
+            </section>
+            <section>
+                <div class="slide-content">
+                    <h2>GRAPH PROPERTIES</h2>
+                    <ul>
+                        <li>Represent chessboard as graph (64 nodes)</li>
+                        <li>Each knight move = edge between nodes</li>
+                        <li>Undirected & Unweighted: moves are symmetric, all edges cost the same</li>
+                        <li>Degree distribution: corners have 2 moves, edges more, center the most</li>
+                        <li>Connected: every square is reachable from any other</li>
+                        <li>Symmetric: graph is rotationally and reflectively symmetric</li>
+                        <li>Bipartite: knight alternates between black and white squares</li>
+                    </ul>
+                </div>
+            </section>
+            <section>
+                <div class="slide-content">
+                    <h2>HEAT MAP</h2>
+                     <p style="max-width: 800px; text-align: center; margin-top: 1rem;">By running our algorithm on all 64 squares and counting the legal moves (the degree of each node), we can create a "Heatmap of Control."</p>
+                </div>
+            </section>
+            <section>
+                 <div class="slide-content">
+                    <h2>PATHFINDER</h2>
+                    <p style="max-width: 800px; text-align: center; margin-top: 1rem;">Using our graph model, we can apply a Breadth-First Search (BFS) algorithm to find the mathematically shortest path between any two squares.</p>
+                </div>
+            </section>
+            <section>
+                <div class="slide-content">
+                    <h2>WHAT ABOUT THE DANGER</h2>
+                    <p style="max-width: 800px; text-align: center; margin-top: 1rem;">A simple pathfinder is "blind." To solve this, we evolve our model to a weighted graph, where moving to a threatened square has a high "cost."</p>
+                </div>
+            </section>
+            <section>
+                <div class="slide-content">
+                    <h2>SCENARIO (LIVE DEMO)</h2>
+                    <iframe data-src="./knight_app.html"></iframe>
+                </div>
+            </section>
+            <section>
+                <div class="slide-content">
+                    <h2>ANY Q?</h2>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+        });
+    </script>
+</body>
+</html>
